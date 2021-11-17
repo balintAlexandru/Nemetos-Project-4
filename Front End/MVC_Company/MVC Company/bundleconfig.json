@@ -1,0 +1,40 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/main.css",
+      "wwwroot/css/sl-slide.css",
+      "wwwroot/css/sl-slide.css",
+      "wwwroot/css/bootstrap-responsive.min.css",
+      "wwwroot/css/bootstrap.min.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/bootstrap.min.js",
+      "wwwroot/js/jquery.ba-cond.min.js",
+      "wwwroot/js/jquery.slitslider.js",
+      "wwwroot/js/main.js",
+      "wwwroot/js/twitter-bootstrap-hover-dropdown.min.js",
+     
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/site1.min.js",
+    "inputFiles": [
+      "wwwroot/js/vendor/bootstrap.min.js",
+      "wwwroot/js/vendor/jquery-1.9.1.min.js",
+      "wwwroot/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  }
+]
