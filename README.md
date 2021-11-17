@@ -1,8 +1,8 @@
 # Nemetos-Project-4
 # ECHIPELE
-1. Alex & Dan
-2. Andrei & Cipri
-3. Vlad & Rares & Alin
+1. Alex & Dan -> Curatat codul, implementat procesul de login pentru Admin
+2. Andrei & Cipri -> Operatii Create si Read
+3. Vlad & Rares & Alin -> Operatii Delete si Edit
 ## Cum lucram pe git ( propunerea mea - Alex Balint )
 
 1. Descarcam [Git Bash](https://git-scm.com/downloads)
