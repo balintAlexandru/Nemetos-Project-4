@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Company.Models
+namespace MVC_Company.Services
 {
     public class CommonMethod
     {

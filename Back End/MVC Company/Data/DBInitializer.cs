@@ -1,4 +1,5 @@
-﻿using MVC_Company.Models;
+﻿
+using MVC_Company.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

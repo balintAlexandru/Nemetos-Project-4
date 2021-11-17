@@ -1,6 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.EntityFrameworkCore;
-using MVC_Company.Models;
+using MVC_Company.Entity;
+
+using MVC_Company.Services;
+
 namespace MVC_Company.Data
 {
     public class EmployeeContext : DbContext

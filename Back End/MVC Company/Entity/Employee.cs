@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MVC_Company.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVC_Company.Models
+namespace MVC_Company.Entity
 {
     public class Employee
     {

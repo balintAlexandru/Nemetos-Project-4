@@ -1,10 +1,13 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace MVC_Company.Models
+namespace MVC_Company.Entity
+
 {
     public class SocialMedia
     {
@@ -14,7 +17,8 @@ namespace MVC_Company.Models
         public string Google { get; set; }
         public string Twitter { get; set; }
         public string Linkedin { get; set; }
-        public int EmployeesRef { get; set; }
+         public int EmployeesRef { get; set; }
+        [JsonIgnore]
         public Employee Employees { get; set; }
     }
 }

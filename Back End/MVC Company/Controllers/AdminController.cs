@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC_Company.Data;
-using MVC_Company.Models;
+using MVC_Company.Entity;
+
+using MVC_Company.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MVC_Company.Data;
-using MVC_Company.Models;
+
 using MVC_Company.Controllers;
 using NUnit.Framework;
 using System;

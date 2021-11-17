@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MVC_Company.Data;
-using MVC_Company.Models;
+using MVC_Company.Entity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
