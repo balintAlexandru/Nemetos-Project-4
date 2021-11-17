@@ -1,5 +1,8 @@
 # Nemetos-Project-4
-
+# ECHIPELE
+1. Alex & Dan
+2. Andrei & Cipri
+3. Vlad & Rares & Alin
 ## Cum lucram pe git ( propunerea mea - Alex Balint )
 
 1. Descarcam [Git Bash](https://git-scm.com/downloads)
@@ -18,3 +21,4 @@
 - `git add .` = adauga in fisier taote modificarile pe care le-am realizat
 - `git commit -m"Test"` = ne afiseaza in repository un mesaj cu schimbarile pe care le-am facut
 - `git push origin main` = adauga in repository schimbarile pe care le-am facut
+
