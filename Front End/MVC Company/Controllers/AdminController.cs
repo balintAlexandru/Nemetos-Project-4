@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 //using MVC_Company.Data;
 using MVC_Company.Models;
+<<<<<<< HEAD
 using MVC_Company.RequestServices;
+=======
+>>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,14 +22,19 @@ using System.Threading.Tasks;
 
 namespace MVC_Company.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AdminController : Controller
     {
+<<<<<<< HEAD
         private IRequestServices requestServices { get; set; }
         public AdminController(IRequestServices requestServices)
         {
             this.requestServices = requestServices;
         }
+=======
+
+        string Baseurl = "https://localhost:44338/";
+>>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
         [AllowAnonymous]
         [HttpGet("login")]
         public IActionResult Login(Admin admin, string returnUrl)
@@ -39,6 +47,7 @@ namespace MVC_Company.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Validate(string username, string password, string returnUrl, CommonMethod methods)
         {
+<<<<<<< HEAD
             /* foreach (var item in _context.Admins)
              {
                  if (username == item.UserName && password == methods.ConvertToDecrypt(item.Password))
@@ -52,6 +61,35 @@ namespace MVC_Company.Controllers
                      return Redirect(returnUrl);
                  }
              }*/
+=======
+            List<Admin> AdminInfo = new List<Admin>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/Admin/Login");
+                if (Res.IsSuccessStatusCode)
+                {
+                    var AdminResponse = Res.Content.ReadAsStringAsync().Result;
+                    AdminInfo = JsonConvert.DeserializeObject<List<Admin>>(AdminResponse);
+                }
+
+            }
+            foreach (var item in AdminInfo)
+            {
+                if (username == item.UserName && password == methods.ConvertToDecrypt(item.Password))
+                {
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim("username", username));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, username));
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    return Redirect(returnUrl);
+                }
+            }
+>>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
             return RedirectToAction();
         }
         public async Task<IActionResult> Employee()
@@ -79,10 +117,16 @@ namespace MVC_Company.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Create(Employee employee, IFormFile Image)
         {
             requestServices.CreateEmployee(Image, employee);
 
+=======
+        public async Task<IActionResult> Create(Employee employee, FormFile Image)
+        {
+            
+>>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
             return View();
         }
         public async Task<IActionResult> SocialMedia()

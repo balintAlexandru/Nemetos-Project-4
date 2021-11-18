@@ -34,8 +34,7 @@ namespace MVC_Company
                 var services = scope.ServiceProvider;
                 try
                 {
-                   // var context = services.GetRequiredService<EmployeeContext>();
-                  //  DBInitializer.Initialize(context);
+                  //  var context = services.GetRequiredService<EmployeeContext>();
                 }
                 catch (Exception ex)
                 {

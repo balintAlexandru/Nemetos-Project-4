@@ -6,8 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+<<<<<<< HEAD
 using MVC_Company.RequestServices;
 //using MVC_Company.Data;
+=======
+>>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,14 +27,9 @@ namespace MVC_Company
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-           /* services.AddDbContext<EmployeeContext>(options => {
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"));
-            });*/
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.LoginPath = "/login";
@@ -39,7 +37,6 @@ namespace MVC_Company
             services.AddTransient<IRequestServices, RequestService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
