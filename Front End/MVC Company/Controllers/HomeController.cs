@@ -3,10 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 //using MVC_Company.Data;
 using MVC_Company.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace MVC_Company.Controllers
@@ -20,8 +23,18 @@ namespace MVC_Company.Controllers
         }
         public async Task<IActionResult> AboutUs()
         {
-            //List<Employee> model = await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
-            return View();
+            List<Employee> EmpInfo = new List<Employee>();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("https://localhost:44399/Employees");
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    EmpInfo = JsonConvert.DeserializeObject<List<Employee>>(EmpResponse);
+                }
+            }
+            return View(EmpInfo);
         }
         public IActionResult Services()
         {

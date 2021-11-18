@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVC_Company.RequestServices;
 //using MVC_Company.Data;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace MVC_Company
                 .AddCookie(options => {
                     options.LoginPath = "/login";
                 });
+            services.AddTransient<IRequestServices, RequestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

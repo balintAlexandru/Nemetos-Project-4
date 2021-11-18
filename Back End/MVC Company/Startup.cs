@@ -38,6 +38,7 @@ namespace MVC_Company
                 });
 
             services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<ISocialMediaServices, SocialMediaServices>();
 
 
         }

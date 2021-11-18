@@ -18,11 +18,13 @@ namespace MVC_Company.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        public ISocialMediaServices socialMediaServices;
         public IEmployeeServices employeeServices;
         private readonly EmployeeContext _context;
 
-        public EmployeeController(IEmployeeServices employeeServices, EmployeeContext context)
+        public EmployeeController(IEmployeeServices employeeServices, ISocialMediaServices socialMediaServices, EmployeeContext context)
         {
+            this.socialMediaServices = socialMediaServices;
             this.employeeServices = employeeServices;
             this._context = context;
         }
@@ -30,6 +32,7 @@ namespace MVC_Company.Controllers
         [HttpPost("/createEmploy")]
         public IActionResult CreateEmploy([FromBody] EmployeeDTO employeeDTO)
         {
+            
             if (ModelState.IsValid)
             {
 
@@ -42,6 +45,16 @@ namespace MVC_Company.Controllers
                 return BadRequest();
             }
         }
+        [HttpPost("/addSocialMedia")]
+        public IActionResult CreateSocial([FromBody]SocialMediaDTO socialMediaDTO,[FromRoute]int id) {
+            if (ModelState.IsValid) 
+            {
+                socialMediaServices.addSocialMedia(socialMediaDTO, id);
+
+                return Ok(new { Message = "Employee was added" });
+            }
+            return BadRequest();
+        }
 
 
    /*     [HttpGet("/getEmployee")]
@@ -53,7 +66,7 @@ namespace MVC_Company.Controllers
            // await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
         }*/
 
-        [HttpGet("/getEmployee")]
+        [HttpGet("/Employees")]
         public async Task<IActionResult> Get()
         {
             List<Employee> model = await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
@@ -68,6 +81,12 @@ namespace MVC_Company.Controllers
             {
                 return NotFound();
             }
+            return Ok(model);
+        }
+        [HttpGet("/SocialMedia")]
+        public async Task<IActionResult> GetSocialMedia()
+        {
+            List<SocialMedia> model =  _context.SocialMedia.ToList();
             return Ok(model);
         }
 
