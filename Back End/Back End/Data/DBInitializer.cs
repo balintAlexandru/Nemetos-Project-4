@@ -1,9 +1,6 @@
 ﻿
 using MVC_Company.Entity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MVC_Company.Data
 {
@@ -28,7 +25,6 @@ namespace MVC_Company.Data
                 context.Employees.Add(s);
             }
             context.SaveChanges();
-
         }
     }
 }

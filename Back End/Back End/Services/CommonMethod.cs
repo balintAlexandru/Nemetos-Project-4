@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-<<<<<<< HEAD:Back End/Back End/Services/CommonMethod.cs
 namespace MVC_Company.Services
-=======
-namespace Back_End.Data
->>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f:Back End/Back End/Data/CommonMethod.cs
 {
     public class CommonMethod
     {

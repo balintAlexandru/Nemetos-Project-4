@@ -1,9 +1,6 @@
-﻿using Back_End.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC_Company.Entity;
+using MVC_Company.Services;
 
 namespace Back_End.Data
 {

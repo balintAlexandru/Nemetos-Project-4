@@ -1,11 +1,6 @@
-﻿using Back_End.Data;
-using Back_End.Services;
-using Microsoft.AspNetCore.Http;
+﻿using Back_End.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Back_End.Controllers
 {

@@ -1,15 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC_Company.Data;
 using MVC_Company.DTO;
 using MVC_Company.Entity;
 using MVC_Company.Services;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MVC_Company.Controllers
@@ -30,14 +26,12 @@ namespace MVC_Company.Controllers
         }
 
         [HttpPost("/createEmploy")]
-        public IActionResult CreateEmploy([FromBody] EmployeeDTO employeeDTO)
+        public IActionResult CreateEmployee([FromBody] EmployeeDTO employeeDTO)
         {
             
             if (ModelState.IsValid)
             {
-
                 employeeServices.AddEmployee(employeeDTO);
-
                 return Ok(new { Message = "Employee was added" });
             }
             else
@@ -89,8 +83,5 @@ namespace MVC_Company.Controllers
             List<SocialMedia> model =  _context.SocialMedia.ToList();
             return Ok(model);
         }
-
-
-
     }
 }
