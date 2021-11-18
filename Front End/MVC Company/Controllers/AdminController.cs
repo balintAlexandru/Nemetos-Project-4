@@ -4,17 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-//using MVC_Company.Data;
 using MVC_Company.Models;
-<<<<<<< HEAD
 using MVC_Company.RequestServices;
-=======
->>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -25,16 +18,13 @@ namespace MVC_Company.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-<<<<<<< HEAD
         private IRequestServices requestServices { get; set; }
         public AdminController(IRequestServices requestServices)
         {
             this.requestServices = requestServices;
         }
-=======
-
         string Baseurl = "https://localhost:44338/";
->>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
+
         [AllowAnonymous]
         [HttpGet("login")]
         public IActionResult Login(Admin admin, string returnUrl)
@@ -43,25 +33,11 @@ namespace MVC_Company.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Validate(string username, string password, string returnUrl, CommonMethod methods)
         {
-<<<<<<< HEAD
-            /* foreach (var item in _context.Admins)
-             {
-                 if (username == item.UserName && password == methods.ConvertToDecrypt(item.Password))
-                 {
-                     var claims = new List<Claim>();
-                     claims.Add(new Claim("username", username));
-                     claims.Add(new Claim(ClaimTypes.NameIdentifier, username));
-                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                     await HttpContext.SignInAsync(claimsPrincipal);
-                     return Redirect(returnUrl);
-                 }
-             }*/
-=======
             List<Admin> AdminInfo = new List<Admin>();
             using (var client = new HttpClient())
             {
@@ -89,7 +65,6 @@ namespace MVC_Company.Controllers
                     return Redirect(returnUrl);
                 }
             }
->>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
             return RedirectToAction();
         }
         public async Task<IActionResult> Employee()
@@ -117,18 +92,14 @@ namespace MVC_Company.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
+
         public async Task<IActionResult> Create(Employee employee, IFormFile Image)
         {
             requestServices.CreateEmployee(Image, employee);
 
-=======
-        public async Task<IActionResult> Create(Employee employee, FormFile Image)
-        {
-            
->>>>>>> 4091b242df8ac9a447c8e074654863e20601e95f
-            return View();
+            return Ok();
         }
+
         public async Task<IActionResult> SocialMedia()
         {
             //List<SocialMedia> model = await _context.SocialMedia.Include(x => x.Employees).ToListAsync();
