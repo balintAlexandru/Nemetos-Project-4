@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MVC_Company.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="container main">
+    <h1>Employee</h1>
+
+    <p>
+        <h3><a asp-action="Create">Create New</a></h3>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.Intro)
+                </th>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.SocialMedia.Facebook)
+                </th>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.SocialMedia.Google)
+                </th>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.SocialMedia.Twitter)
+                </th>
+                <th>
+                    <h4>@Html.DisplayNameFor(model => model.SocialMedia.Linkedin)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var base64 = Convert.ToBase64String(item.Image);
+                            var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" style="max-width:250px; max-height:250px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Intro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SocialMedia.Facebook)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SocialMedia.Google)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SocialMedia.Twitter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SocialMedia.Linkedin)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdEmployee">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdEmployee">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

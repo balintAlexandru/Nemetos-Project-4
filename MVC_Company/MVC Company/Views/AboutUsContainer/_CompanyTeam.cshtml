@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MVC_Company.Models.Employee>
+
+<section class="container main">
+    <h1 class="center">Company Team</h1>
+    <hr />
+    <div class="row-fluid">
+        @foreach (var item in Model)
+        {
+            
+            <div class="span3">
+                @{ 
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var imgsrc = String.Format("data:image/gif;base64,{0}", base64); 
+                 }
+                <div class="box">
+                    <p><img src="@imgsrc" /></p>
+                    <h5>@item.Name</h5>
+                    <p>@item.Intro</p>
+                    <a style="@(item.SocialMedia.Facebook != null ? "display:visible" : "display:none")" class="btn btn-social btn-facebook" href="@item.SocialMedia.Facebook"><i class="icon-facebook"></i></a>
+                    <a style="@(item.SocialMedia.Google != null ? "display:visible" : "display:none")" class="btn btn-social btn-google-plus" href="@item.SocialMedia.Google"><i class="icon-google-plus"></i></a>
+                    <a style="@(item.SocialMedia.Twitter != null ? "display:visible" : "display:none")" class="btn btn-social btn-twitter" href="@item.SocialMedia.Twitter"><i class="icon-twitter"></i></a>
+                    <a style="@(item.SocialMedia.Linkedin != null ? "display:visible" : "display:none")" class="btn btn-social btn-linkedin" href="@item.SocialMedia.Linkedin"><i class="icon-linkedin"></i></a>
+                </div>
+            </div>
+         }
+    </div>
+</section>
+       

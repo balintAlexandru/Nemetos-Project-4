@@ -1,0 +1,38 @@
+﻿@model MVC_Company.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<section class="container main center">
+    <h1>Edit</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdEmployee" />
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="file" id="files" asp-for="Image" required/>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Intro" class="control-label"></label>
+                    <input asp-for="Intro" class="form-control" />
+                    <span asp-validation-for="Intro" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <a asp-action="Employee">Back to List</a>
+    </div>
+</section>
+

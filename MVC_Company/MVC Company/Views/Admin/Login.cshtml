@@ -1,0 +1,23 @@
+﻿@{
+    
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+<section class="container main center">
+    
+        
+        <img src="~/images/Login/login.png" class="rounded" alt="Error404" width="450px" height="450px">
+        <form action="/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)" method="post">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" style="border: 1px solid #bfbfbf" />
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" style="border: 1px solid #bfbfbf" />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="login" />
+            </div>
+        </form>
+  
+</section>
+
+
