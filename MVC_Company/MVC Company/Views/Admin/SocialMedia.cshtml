@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MVC_Company.Models.SocialMedia>
+
+@{
+    ViewData["Title"] = "SocialMedia";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="container main">
+    <h1>SocialMedia</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <h3/>@Html.DisplayNameFor(model => model.Employees)
+                </th>
+                <th>
+                    <h3/>@Html.DisplayNameFor(model => model.Facebook)
+                </th>
+                <th>
+                    <h3/>@Html.DisplayNameFor(model => model.Google)
+                </th>
+                <th>
+                    <h3/>@Html.DisplayNameFor(model => model.Twitter)
+                </th>
+                <th>
+                    <h3/>@Html.DisplayNameFor(model => model.Linkedin)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <h5/>@Html.DisplayFor(modelItem => item.Employees.Name)
+                </td>
+                <td>
+                    <h5/>@Html.DisplayFor(modelItem => item.Facebook)
+                </td>
+                <td>
+                    <h5/>@Html.DisplayFor(modelItem => item.Google)
+                </td>
+                <td>
+                    <h5/>@Html.DisplayFor(modelItem => item.Twitter)
+                </td>
+                <td>
+                    <h5/>@Html.DisplayFor(modelItem => item.Linkedin)
+                </td>
+                <td>
+                    <a asp-action="SocialMediaEdit" asp-route-id="@item.IdSocialMedia">Edit</a> 
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>
