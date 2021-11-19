@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace MVC_Company.Entity
+namespace Back_End.Entity
 
 {
     public class SocialMedia

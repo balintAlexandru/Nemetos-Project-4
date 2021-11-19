@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MVC_Company.Data;
-using MVC_Company.DTO;
-using MVC_Company.Entity;
-using MVC_Company.Services;
+using Back_End.Data;
+using Back_End.DTO;
+using Back_End.Entity;
+using Back_End.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVC_Company.Controllers
+namespace Back_End.Controllers
 {
     [Route("/api")]
     [ApiController]
@@ -18,17 +18,16 @@ namespace MVC_Company.Controllers
         public IEmployeeServices employeeServices;
         private readonly EmployeeContext _context;
 
-        public EmployeeController(IEmployeeServices employeeServices, ISocialMediaServices socialMediaServices, EmployeeContext context)
+        public EmployeeController(EmployeeContext context)
         {
-            this.socialMediaServices = socialMediaServices;
-            this.employeeServices = employeeServices;
-            this._context = context;
+            socialMediaServices = new SocialMediaServices(context);
+            employeeServices = new EmployeeServices(context);
+            _context = context;
         }
 
         [HttpPost("/createEmploy")]
         public IActionResult CreateEmployee([FromBody] EmployeeDTO employeeDTO)
         {
-            
             if (ModelState.IsValid)
             {
                 employeeServices.AddEmployee(employeeDTO);
@@ -39,26 +38,6 @@ namespace MVC_Company.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost("/addSocialMedia")]
-        public IActionResult CreateSocial([FromBody]SocialMediaDTO socialMediaDTO,[FromRoute]int id) {
-            if (ModelState.IsValid) 
-            {
-                socialMediaServices.addSocialMedia(socialMediaDTO, id);
-
-                return Ok(new { Message = "Employee was added" });
-            }
-            return BadRequest();
-        }
-
-
-   /*     [HttpGet("/getEmployee")]
-        public ActionResult<List<EmployeeDTO>> GetEmploy()
-        {
-            var model = employeeServices.GetAllEmployee();
-            return Ok(model);
-
-           // await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
-        }*/
 
         [HttpGet("/Employees")]
         public async Task<IActionResult> Get()
@@ -77,6 +56,18 @@ namespace MVC_Company.Controllers
             }
             return Ok(model);
         }
+
+        [HttpPost("/addSocialMedia")]
+        public IActionResult CreateSocial([FromBody]SocialMediaDTO socialMediaDTO,[FromRoute]int id) {
+            if (ModelState.IsValid) 
+            {
+                socialMediaServices.addSocialMedia(socialMediaDTO, id);
+
+                return Ok(new { Message = "SocialMedia was added" });
+            }
+            return BadRequest();
+        }
+
         [HttpGet("/SocialMedia")]
         public async Task<IActionResult> GetSocialMedia()
         {

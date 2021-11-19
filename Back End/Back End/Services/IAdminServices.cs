@@ -1,4 +1,4 @@
-﻿using MVC_Company.Entity;
+﻿using Back_End.Entity;
 using System.Collections.Generic;
 
 namespace Back_End.Services

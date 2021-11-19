@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MVC_Company.Data;
-using MVC_Company.Services;
+using Back_End.Data;
+using Back_End.Services;
 
 namespace Back_End
 {
@@ -34,6 +34,7 @@ namespace Back_End
 
             services.AddTransient<IEmployeeServices, EmployeeServices>();
             services.AddTransient<ISocialMediaServices, SocialMediaServices>();
+            services.AddTransient<IAdminServices, AdminServices>();
 
 
         }

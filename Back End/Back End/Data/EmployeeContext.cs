@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVC_Company.Entity;
+using Back_End.Entity;
 
-using MVC_Company.Services;
+using Back_End.Services;
 
-namespace MVC_Company.Data
+namespace Back_End.Data
 {
     public class EmployeeContext : DbContext
     {
@@ -15,7 +15,6 @@ namespace MVC_Company.Data
         public DbSet<Admin> Admins { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Employee>()
                 .HasOne(a => a.SocialMedia)
                 .WithOne(b => b.Employees)

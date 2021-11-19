@@ -1,11 +1,11 @@
-﻿using MVC_Company.Entity;
+﻿using Back_End.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace MVC_Company.DTO
+namespace Back_End.DTO
 
 {
     public class SocialMediaDTO

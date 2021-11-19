@@ -1,5 +1,5 @@
 ﻿using Back_End.Data;
-using MVC_Company.Entity;
+using Back_End.Entity;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +7,8 @@ namespace Back_End.Services
 {
     public class AdminServices : IAdminServices
     {
-        private AdministratorContext _dbContext;
-        public AdminServices(AdministratorContext dbContext)
+        private EmployeeContext _dbContext;
+        public AdminServices(EmployeeContext dbContext)
         {
             _dbContext = dbContext;
         }

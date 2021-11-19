@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace MVC_Company.Services
+namespace Back_End.Services
 {
     public class CommonMethod
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MVC_Company.Entity
+namespace Back_End.Entity
 {
     public class Admin
     {

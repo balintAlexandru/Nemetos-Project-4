@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MVC_Company.Data;
+using Back_End.Data;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
@@ -24,8 +24,7 @@ namespace Back_End
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<EmployeeContext>();
-                    DBInitializer.Initialize(context);
+                    var context = services.GetRequiredService<EmployeeContext>();   
                 }
                 catch (Exception ex)
                 {

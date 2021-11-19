@@ -13,7 +13,7 @@ namespace Back_End.Controllers
         {
             this.adminServices = adminServices;
         }
-        [HttpGet("Login")]
+        [HttpGet]
         public IActionResult Get()
         {
             try
@@ -23,7 +23,8 @@ namespace Back_End.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "An error has occured");
+                return Ok("Hello");
+                //return StatusCode(500, "An error has occured");
             }
 
         }

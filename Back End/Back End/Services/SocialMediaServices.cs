@@ -1,11 +1,7 @@
-﻿using MVC_Company.Data;
-using MVC_Company.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Back_End.Data;
+using Back_End.DTO;
 
-namespace MVC_Company.Services
+namespace Back_End.Services
 {
     public interface ISocialMediaServices
     {
