@@ -25,7 +25,6 @@ namespace MVC_Company.Controllers
             this.requestServices = requestServices;
         }
         
-
         [AllowAnonymous]
         [HttpGet("login")]
         public IActionResult Login(Admin admin, string returnUrl)
@@ -76,7 +75,7 @@ namespace MVC_Company.Controllers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync("https://localhost:44399/employees");
+                HttpResponseMessage Res = await client.GetAsync(BaseURL + "employees");
                 if (Res.IsSuccessStatusCode)
                 {
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
@@ -109,7 +108,7 @@ namespace MVC_Company.Controllers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync("https://localhost:44399/SocialMedia");
+                HttpResponseMessage Res = await client.GetAsync(BaseURL + "SocialMedia");
                 if (Res.IsSuccessStatusCode)
                 {
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
