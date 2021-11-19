@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MVC_Company.Models;
 using MVC_Company.RequestServices;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -19,11 +19,12 @@ namespace MVC_Company.Controllers
     public class AdminController : Controller
     {
         private IRequestServices requestServices { get; set; }
+        private readonly string BaseURL = "https://localhost:44399/";
         public AdminController(IRequestServices requestServices)
         {
             this.requestServices = requestServices;
         }
-        string Baseurl = "https://localhost:44338/";
+        
 
         [AllowAnonymous]
         [HttpGet("login")]
@@ -41,10 +42,10 @@ namespace MVC_Company.Controllers
             List<Admin> AdminInfo = new List<Admin>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Baseurl);
+                client.BaseAddress = new Uri(BaseURL);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync("api/Admin/Login");
+                HttpResponseMessage Res = await client.GetAsync("api/Admin");
                 if (Res.IsSuccessStatusCode)
                 {
                     var AdminResponse = Res.Content.ReadAsStringAsync().Result;
@@ -67,21 +68,22 @@ namespace MVC_Company.Controllers
             }
             return RedirectToAction();
         }
+
+        [HttpGet]
         public async Task<IActionResult> Employee()
         {
-
-            //  return View(await _context.Employees.Include(x => x.SocialMedia).ToListAsync());
             List<Employee> EmpInfo = new List<Employee>();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync("https://localhost:44399/Employees");
+                HttpResponseMessage Res = await client.GetAsync("https://localhost:44399/employees");
                 if (Res.IsSuccessStatusCode)
                 {
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     EmpInfo = JsonConvert.DeserializeObject<List<Employee>>(EmpResponse);
                 }
             }
+
             return View(EmpInfo);
         }
 
@@ -92,8 +94,7 @@ namespace MVC_Company.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Create(Employee employee, IFormFile Image)
+        public IActionResult Create(Employee employee, IFormFile Image)
         {
             requestServices.CreateEmployee(Image, employee);
 

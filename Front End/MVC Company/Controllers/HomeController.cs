@@ -16,7 +16,7 @@ namespace MVC_Company.Controllers
 {
     public class HomeController : Controller
     {
-       
+        private readonly string BaseURL = "https://localhost:44399/"; 
         public IActionResult Home()
         {
             return View();
@@ -27,7 +27,7 @@ namespace MVC_Company.Controllers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync("https://localhost:44399/Employees");
+                HttpResponseMessage Res = await client.GetAsync(BaseURL + "Employees");
                 if (Res.IsSuccessStatusCode)
                 {
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
