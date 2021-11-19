@@ -102,9 +102,7 @@ namespace MVC_Company.Controllers
 
         public async Task<IActionResult> SocialMedia()
         {
-            //List<SocialMedia> model = await _context.SocialMedia.Include(x => x.Employees).ToListAsync();
-            //  return View(await _context.Employees.Include(x => x.SocialMedia).ToListAsync());
-            List<SocialMedia> socialMediasList = new List<SocialMedia>();
+            List<Employee> employeeList = new List<Employee>();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -112,10 +110,10 @@ namespace MVC_Company.Controllers
                 if (Res.IsSuccessStatusCode)
                 {
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
-                    socialMediasList = JsonConvert.DeserializeObject<List<SocialMedia>>(EmpResponse);
+                    employeeList = JsonConvert.DeserializeObject<List<Employee>>(EmpResponse);
                 }
             }
-            return View(socialMediasList);
+            return View(employeeList);
 
         }
         public async Task<IActionResult> SocialMediaEdit(int? id)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_Company.Models.SocialMedia>
+﻿@model IEnumerable<MVC_Company.Models.Employee>
 
 @{
     ViewData["Title"] = "SocialMedia";
@@ -12,19 +12,19 @@
         <thead>
             <tr>
                 <th>
-                    <h3/>@Html.DisplayNameFor(model => model.Employees)
+                    <h3 />@Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    <h3/>@Html.DisplayNameFor(model => model.Facebook)
+                    <h3 />@Html.DisplayNameFor(model => model.SocialMedia.Facebook)
                 </th>
                 <th>
-                    <h3/>@Html.DisplayNameFor(model => model.Google)
+                    <h3 />@Html.DisplayNameFor(model => model.SocialMedia.Google)
                 </th>
                 <th>
-                    <h3/>@Html.DisplayNameFor(model => model.Twitter)
+                    <h3 />@Html.DisplayNameFor(model => model.SocialMedia.Twitter)
                 </th>
                 <th>
-                    <h3/>@Html.DisplayNameFor(model => model.Linkedin)
+                    <h3 />@Html.DisplayNameFor(model => model.SocialMedia.Linkedin)
                 </th>
                 <th></th>
             </tr>
@@ -32,26 +32,26 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    <h5/>@Html.DisplayFor(modelItem => item.Employees.Name)
-                </td>
-                <td>
-                    <h5/>@Html.DisplayFor(modelItem => item.Facebook)
-                </td>
-                <td>
-                    <h5/>@Html.DisplayFor(modelItem => item.Google)
-                </td>
-                <td>
-                    <h5/>@Html.DisplayFor(modelItem => item.Twitter)
-                </td>
-                <td>
-                    <h5/>@Html.DisplayFor(modelItem => item.Linkedin)
-                </td>
-                <td>
-                    <a asp-action="SocialMediaEdit" asp-route-id="@item.IdSocialMedia">Edit</a> 
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <h5 />@Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <h5 />@Html.DisplayFor(modelItem => item.SocialMedia.Facebook)
+                    </td>
+                    <td>
+                        <h5 />@Html.DisplayFor(modelItem => item.SocialMedia.Google)
+                    </td>
+                    <td>
+                        <h5 />@Html.DisplayFor(modelItem => item.SocialMedia.Twitter)
+                    </td>
+                    <td>
+                        <h5 />@Html.DisplayFor(modelItem => item.SocialMedia.Linkedin)
+                    </td>
+                    <td>
+                        <a asp-action="SocialMediaEdit" asp-route-id="@item.SocialMedia.IdSocialMedia">Edit</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

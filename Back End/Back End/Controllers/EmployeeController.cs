@@ -71,7 +71,7 @@ namespace Back_End.Controllers
         [HttpGet("/SocialMedia")]
         public async Task<IActionResult> GetSocialMedia()
         {
-            List<SocialMedia> model =  _context.SocialMedia.ToList();
+            List<Employee> model = await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
             return Ok(model);
         }
     }
