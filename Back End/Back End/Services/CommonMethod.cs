@@ -11,6 +11,7 @@ namespace Back_End.Services
             if (string.IsNullOrEmpty(password)) return "";
             password += Key;
             var passwordBytes = Encoding.UTF8.GetBytes(password);
+
             return Convert.ToBase64String(passwordBytes);
         }
         public string ConvertToDecrypt(string base64EncodeData)

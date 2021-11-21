@@ -74,5 +74,20 @@ namespace Back_End.Controllers
             List<Employee> model = await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
             return Ok(model);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEmployee([FromBody] EmployeeDTO employeeDTO)
+        {
+            if(ModelState.IsValid)
+            {
+                employeeServices.DeleteEmployee(employeeDTO);
+                return Ok(new { Message = "Employee was deleted" });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }

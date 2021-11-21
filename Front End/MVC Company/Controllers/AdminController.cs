@@ -96,7 +96,7 @@ namespace MVC_Company.Controllers
         public IActionResult Create(Employee employee, IFormFile Image)
         {
             requestServices.CreateEmployee(Image, employee);
-
+            
             return Ok();
         }
 
