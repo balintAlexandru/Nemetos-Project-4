@@ -145,8 +145,18 @@ namespace MVC_Company.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            //TODO
-            return View();
+            Employee empinfo = new Employee();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync(BaseURL + "getEmployee/" + id);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    empinfo = JsonConvert.DeserializeObject<Employee>(EmpResponse);
+                }
+            }
+            return View(empinfo);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -156,6 +166,15 @@ namespace MVC_Company.Controllers
             /* var employee = await _context.Employees.FindAsync(id);
              _context.Employees.Remove(employee);
              await _context.SaveChangesAsync();*/
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.DeleteAsync(BaseURL + "Delete/" + id);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                }
+            }
             return RedirectToAction();
         }
 

@@ -11,7 +11,7 @@ namespace Back_End.Services
 
     public interface IEmployeeServices {
         void AddEmployee(EmployeeDTO employee);
-        void DeleteEmployee(EmployeeDTO employee);
+        void DeleteEmployee(int id);
         // List<EmployeeDTO> GetAllEmployee();
 
 
@@ -42,15 +42,12 @@ namespace Back_End.Services
             }
         }
 
-        public void DeleteEmployee(EmployeeDTO employeeDTO)
-        {
-            var employeeEntity = EmployeeDTO.mappingDTOtoEntity(employeeDTO);
-            var socialMediaEntity = SocialMediaDTO.mappingDTOtoEntity(employeeDTO.SocialMedia);           
+        public void DeleteEmployee(int id)
+        {          
             try
             {
-                employeeEntity.SocialMedia = socialMediaEntity;
-                socialMediaEntity.Employees = employeeEntity;
-                _db.Employees.Remove(employeeEntity);
+                var employee = _db.Employees.FirstOrDefault(x => x.IdEmployee == id);
+                _db.Employees.Remove(employee);
                 _db.SaveChanges();
             }
             catch (Exception e)

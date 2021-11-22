@@ -20,6 +20,7 @@ namespace Back_End.Controllers
 
         public EmployeeController(EmployeeContext context)
         {
+
             socialMediaServices = new SocialMediaServices(context);
             employeeServices = new EmployeeServices(context);
             _context = context;
@@ -75,12 +76,12 @@ namespace Back_End.Controllers
             return Ok(model);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteEmployee([FromBody] EmployeeDTO employeeDTO)
+        [HttpDelete("/Delete/{id}")]
+        public IActionResult DeleteEmployee(int id)
         {
             if(ModelState.IsValid)
             {
-                employeeServices.DeleteEmployee(employeeDTO);
+                employeeServices.DeleteEmployee(id);
                 return Ok(new { Message = "Employee was deleted" });
             }
             else
