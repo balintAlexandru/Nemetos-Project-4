@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Back_End.Data;
 using Back_End.Services;
+using Microsoft.OpenApi.Models;
 
 namespace Back_End
 {
@@ -32,6 +33,12 @@ namespace Back_End
                     options.LoginPath = "/login";
                 });
 
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Backend", Version = "v1" });
+            });
+
             services.AddTransient<IEmployeeServices, EmployeeServices>();
             services.AddTransient<ISocialMediaServices, SocialMediaServices>();
             services.AddTransient<IAdminServices, AdminServices>();
@@ -45,6 +52,9 @@ namespace Back_End
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "test v1"));
+
             }
             else
             {
