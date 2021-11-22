@@ -36,7 +36,7 @@ namespace MVC_Company.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Validate(string username, string password, string returnUrl, CommonMethod methods)
+        public async Task<IActionResult> ValidateAdmin(string username, string password, string returnUrl, CommonMethod methods)
         {
             List<Admin> AdminInfo = new List<Admin>();
             using (var client = new HttpClient())
@@ -83,7 +83,7 @@ namespace MVC_Company.Controllers
                 }
             }
 
-            return View(EmpInfo);
+            return View("employee",EmpInfo);
         }
 
         public IActionResult Create()
@@ -97,7 +97,7 @@ namespace MVC_Company.Controllers
         {
             requestServices.CreateEmployee(Image, employee);
             
-            return Ok();
+            return RedirectToAction("Employee");
         }
 
         public async Task<IActionResult> SocialMedia()
@@ -117,17 +117,8 @@ namespace MVC_Company.Controllers
 
         }
         public async Task<IActionResult> SocialMediaEdit(int? id)
-        {
-            /* if (id == null)
-             {
-                 return NotFound();
-             }
-
-             var media = await _context.SocialMedia.FindAsync(id);
-             if (media == null)
-             {
-                 return NotFound();
-             }*/
+        { 
+            //TODO
             return View();
         }
 
@@ -135,44 +126,12 @@ namespace MVC_Company.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SocialMediaEdit(int id, SocialMedia media)
         {
-            /* if (id != media.IdSocialMedia)
-             {
-                 return NotFound();
-             }
-             if (ModelState.IsValid)
-             {
-                 try
-                 {
-                     _context.Update(media);
-                     await _context.SaveChangesAsync();
-                 }
-                 catch (DbUpdateConcurrencyException)
-                 {
-                     if (!SocialMediaExists(media.IdSocialMedia))
-                     {
-                         return NotFound();
-                     }
-                     else
-                     {
-                         throw;
-                     }
-                 }
-                 return RedirectToAction(nameof(SocialMedia));
-             }*/
-            return View();
+            //TODO
+            return RedirectToAction("SocialMedia");
         }
         public async Task<IActionResult> Edit(int? id)
-        {
-            /* if (id == null)
-             {
-                 return NotFound();
-             }
-
-             var employee = await _context.Employees.FindAsync(id);
-             if (employee == null)
-             {
-                 return NotFound();
-             }*/
+        {          
+            //TODO
             return View();
         }
 
@@ -180,59 +139,13 @@ namespace MVC_Company.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Employee employee, List<IFormFile> Image)
         {
-            /* if (id != employee.IdEmployee)
-             {
-                 return NotFound();
-             }
-             foreach (var item in Image)
-             {
-                 if (item.Length > 0)
-                 {
-                     using (var stream = new MemoryStream())
-                     {
-                         await item.CopyToAsync(stream);
-                         employee.Image = stream.ToArray();
-                     }
-                 }
-             }
-
-             if (ModelState.IsValid)
-             {
-                 try
-                 {
-                     _context.Update(employee);
-                     await _context.SaveChangesAsync();
-                 }
-                 catch (DbUpdateConcurrencyException)
-                 {
-                     if (!EmployeeExists(employee.IdEmployee))
-                     {
-                         return NotFound();
-                     }
-                     else
-                     {
-                         throw;
-                     }
-                 }
-                 return RedirectToAction(nameof(Employee));
-             }*/
+            //TODO
             return View();
         }
 
         public async Task<IActionResult> Delete(int? id)
         {
-            /*if (id == null)
-            {
-                return NotFound();
-            }
-
-            var employee = await _context.Employees
-                .FirstOrDefaultAsync(m => m.IdEmployee == id);
-            if (employee == null)
-            {
-                return NotFound();
-            }*/
-
+            //TODO
             return View();
         }
 
@@ -246,16 +159,6 @@ namespace MVC_Company.Controllers
             return RedirectToAction();
         }
 
-        private bool EmployeeExists(int id)
-        {
-            //return _context.Employees.Any(e => e.IdEmployee == id);
-            return false;
-        }
-        private bool SocialMediaExists(int id)
-        {
-            // return _context.SocialMedia.Any(e => e.IdSocialMedia == id);
-            return false;
-        }
     }
 }
 
