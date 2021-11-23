@@ -74,6 +74,33 @@ namespace Back_End.Controllers
             List<Employee> model = await _context.Employees.Include(x => x.SocialMedia).ToListAsync();
             return Ok(model);
         }
+        
+        [HttpPost("/UpdateEmployee")]
+        public IActionResult UpdateEmployee([FromBody] EmployeeDTO employeeDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                employeeServices.UpdateEmployee(employeeDTO);
+                return Ok(new { Message = "Employee was updated" });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPost("/UpdateSocial")]
+        public IActionResult UpdateSocialMedia([FromBody] SocialMediaDTO socialMediaDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                socialMediaServices.updateSocialMedia(socialMediaDTO);
+                return Ok(new { Message = "Social Media was updated" });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteEmployee([FromBody] EmployeeDTO employeeDTO)

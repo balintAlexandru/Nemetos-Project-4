@@ -6,7 +6,7 @@ namespace Back_End.Services
     public interface ISocialMediaServices
     {
         void addSocialMedia(SocialMediaDTO socialMediaDTO, int id);
-
+        void updateSocialMedia(SocialMediaDTO socialMediaDTO);
     }
     public class SocialMediaServices : ISocialMediaServices
     {
@@ -24,6 +24,13 @@ namespace Back_End.Services
             socialMediaEntity.Employees = employee;
 
             _db.SocialMedia.Add(socialMediaEntity);
+            _db.SaveChanges();
+
+        }
+        public void updateSocialMedia(SocialMediaDTO socialMediaDTO)
+        {
+            var socialMediaEntity = SocialMediaDTO.mappingDTOtoEntity(socialMediaDTO);
+            _db.SocialMedia.Update(socialMediaEntity);
             _db.SaveChanges();
 
         }

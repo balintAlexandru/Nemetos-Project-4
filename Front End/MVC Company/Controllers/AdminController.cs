@@ -8,6 +8,7 @@ using MVC_Company.RequestServices;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -126,21 +127,23 @@ namespace MVC_Company.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SocialMediaEdit(int id, SocialMedia media)
         {
-            //TODO
+            requestServices.UpdateSocialMedia(id, media);
             return RedirectToAction("SocialMedia");
         }
         public async Task<IActionResult> Edit(int? id)
         {          
-            //TODO
+            
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Employee employee, List<IFormFile> Image)
+        public async Task<IActionResult> Edit(int id, Employee employee, IFormFile Image)
         {
-            //TODO
-            return View();
+
+            requestServices.UpdateEmployee(Image, employee,id);
+            return RedirectToAction("Employee");
+            
         }
 
         public async Task<IActionResult> Delete(int? id)

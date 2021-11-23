@@ -13,7 +13,7 @@ namespace Back_End.Services
         void AddEmployee(EmployeeDTO employee);
         void DeleteEmployee(EmployeeDTO employee);
         // List<EmployeeDTO> GetAllEmployee();
-
+        void UpdateEmployee(EmployeeDTO employeeDTO);
 
     }
 
@@ -58,7 +58,20 @@ namespace Back_End.Services
                 Console.WriteLine(e.Message);
             }
         }
-
+        public void UpdateEmployee(EmployeeDTO employeeDTO)
+        {
+            var employeeEntity = EmployeeDTO.mappingDTOtoEntity(employeeDTO);
+         
+            try
+            {
+                _db.Employees.Update(employeeEntity);
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
         /*
         public List<EmployeeDTO> GetAllEmployee()
